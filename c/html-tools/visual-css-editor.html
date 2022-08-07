@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<!-- InstanceBegin template="/Templates/empty.dwt" codeOutsideHTMLIsLocked="false" -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta name="author" content="Dev-Oyehamza120" />
+    <!-- InstanceBeginEditable name="doctitle" -->
+    <title>Visual CSS Editor | Idgaf Codes</title>
+    <!-- InstanceEndEditable -->
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/clipboard.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/styles/rainbow.css">
+    <!-- InstanceBeginEditable name="head" -->
+
+    <link rel="stylesheet" href="../css/spectrum.css">
+    <script src="../js/spectrum.js"></script>
+
+    <script src="../js/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../js/editor.js"></script>
+
+    <script type="text/javascript">
+        function parseCSS(css, preview) {
+            var i = 0;
+            var oldRule = "";
+            var properties = "";
+            var mode = 0;
+            var oldmode = 0;
+            var all = {};
+            var withSelector = false;
+            var oldc = 0;
+            var c = 0;
+
+            preview.innerHTML = "";
+
+
+            while (i < css.length) {
+                oldc = c;
+                c = css.charAt(i++);
+                if (c == "*" && oldc == "/") {
+                    oldmode = mode;
+                    mode = 2;
+                }
+                if (mode == 2) {
+                    if (c == '/' && oldc == '*') {
+                        mode = oldmode;
+                        continue;
+                    }
+                }
+                if (mode == 0) {
+                    if (c == "{") {
+                        properties = "";
+                        mode = 1;
+                        withSelector = true;
+                    } else
+                        oldRule += c;
+                } else
+                if (mode == 1) {
+                    if (c == "}") {
+                        all[oldRule.trim()] = properties;
+                        oldRule = "";
+                        mode = 0;
+                    } else {
+                        properties += c;
+                    }
+                }
+            }
+
+            if (!withSelector) {
+                all["No selector"] = oldRule;
+            }
+
+            var div = null;
+
+            var keys = Object.keys(all);
+            for (i = 0; i < keys.length; i++) {
+                var selector = keys[i];
+                var properties = all[selector];
+                div = document.createElement("DIV");
+                div.innerHTML = selector;
+
+                div.style.padding = "10px";
+                div.style.borderTop = "1px solid #AAA";
+
+                var lst = properties.split(";");
+                for (j = 0; j < lst.length; j++) {
+                    var property = lst[j];
+                    var t = property.split(":");
+                    if (t.length == 2) {
+                        var name = t[0].trim().toLowerCase();
+                        var value = t[1].trim().toLowerCase();
+
+                        if (name == "display" && value == "none") {
+                            name = "backgroundColor";
+                            value = "gray";
+                        }
+                        if (name.indexOf("-") > -1) {
+                            var tmp = name.split("-");
+                            if (tmp.length == 2) {
+                                name = tmp[0] + tmp[1].charAt(0).toUpperCase() + tmp[1].substring(1);
+                            }
+                        }
+                        name = name.replace("-", "");
+                        div.style[name] = value;
+                        preview.appendChild(div);
+                    }
+                }
+            }
+
+        }
+
+        $(function() {
+
+            editor.session.on('change', function(delta) {
+
+                var content = getValue();
+                parseCSS(content, document.getElementById("preview"));
+
+            });
+
+            $("input.color").spectrum({
+                preferredFormat: "rgb",
+                showInput: true
+            });
+            $("#color").change(function() {
+                editor.insert($(this).val());
+            });
+            $("#bold").click(function() {
+                editor.insert("font-weight:bold;");
+            });
+            $("#italic").click(function() {
+                editor.insert("font-style:italic;");
+            });
+            $("#underline").click(function() {
+                editor.insert("text-decoration:underline;");
+            });
+            $("#left").click(function() {
+                editor.insert("text-align:left;");
+            });
+            $("#right").click(function() {
+                editor.insert("text-align:right;");
+            });
+            $("#center").click(function() {
+                editor.insert("text-align:center;");
+            });
+            $("#small").click(function() {
+                editor.insert("font-size:smaller;")
+            });
+            $("#default").click(function() {
+                editor.insert("font-size:initial;")
+            });
+            $("#big").click(function() {
+                editor.insert("font-size:larger;")
+            });
+
+
+        });
+    </script>
+
+    <!-- InstanceEndEditable -->
+
+
+    <!-- InstanceParam name="googleads" type="boolean" value="true" -->
+
+
+</head>
+
+<body>
+
+    <div id="all">
+
+        <div id="menuAction">
+            <input type="button" value="Menu" id="menuButton">
+        </div>
+
+        <header>
+            <div id="headerBody">
+                <h1><a href="/">Idgaf Codes</a> <span id="headerText">Useful Tools for Webmasters by Dev-Oyehamza120</span></h1>
+                <div class="menu">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <div id="body">
+
+            <div id="leftMenu" class="box">
+                <div class="menu">
+                    <h2>Page</h2>
+                    <ul>
+                        <li>
+                            <a href="#">Content</a>
+                        </li>
+                        <li>
+                            <a href="#">Content</a>
+                        </li>
+                        <li>
+                            <a href="#">Content</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="content" class="box">
+
+                <h1>
+                    <!-- InstanceBeginEditable name="title" -->
+                    Visual CSS Editor
+                    <!-- InstanceEndEditable -->
+                </h1>
+
+
+
+
+                <!-- InstanceBeginEditable name="tout" -->
+
+                <form>
+                    <fieldset>
+                        <label for="css">CSS Content</label>
+                        <div id="editor" style="width:100%;height:400px;"></div>
+                    </fieldset>
+                    <fieldset>
+                        <input type="button" id="copy" value="Copy">
+
+                        <input type="button" id="small" value="Small" style="margin-left:20px">
+                        <input type="button" id="default" value="Default">
+                        <input type="button" id="big" value="Big">
+
+                        <input type="button" id="bold" value="Bold" style="margin-left:20px">
+                        <input type="button" id="italic" value="Italic">
+                        <input type="button" id="underline" value="Underline">
+
+                        <input type="button" id="left" value="left" style="margin-left:20px">
+                        <input type="button" id="right" value="right">
+                        <input type="button" id="center" value="center">
+
+                    </fieldset>
+                    <fieldset>
+                        <h3>Insert Color</h3>
+                        <input type="text" class="color" id="color">
+                    </fieldset>
+                </form>
+
+                <h2>Selectors preview</h2>
+
+                <div id="preview">
+                </div>
+
+                <!-- InstanceEndEditable -->
+
+
+            </div>
+
+        </div>
+
+        <footer>
+            <div>
+                <a href="/privacy.html">Privacy Policy</a> | <a href="/contact.html">Contact</a>
+            </div>
+
+
+            <p>
+                &copy; <a href="/">Idgaf.Codes</a>
+            </p>
+
+            <p>
+                &copy; 2022 <a href="http://www.Dev-Oyehamza120.tk">Dev-Oyehamza120</a></p>
+        </footer>
+
+    </div>
+
+
+</body>
+<!-- InstanceEnd -->
+
+</html>
