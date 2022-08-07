@@ -1,0 +1,150 @@
+/* 
+	HE Editor, edits easily your textfield with a powerful HTML editor
+	(c) JAPISOFT 2018 
+	http://www.japisoft.com
+*/
+
+.jheEditor {
+    border: 1px solid #CCC;
+    border-top-color: #DDD;
+    min-height: 80px;
+}
+
+.jheToolbar {
+    background-color: #EEE;
+    height: 23px;
+    overflow: hidden;
+}
+
+.jheToolbar * {
+    box-sizing: content-box !important;
+}
+
+.jheMenu {
+    background-color: #EEE;
+    padding: 5px;
+}
+
+.jheMenuItem a:link,
+.jheMenuItem a {
+    color: black;
+    text-decoration: none;
+}
+
+.jheMenuItem {
+    border-bottom: 1px solid #AAA;
+}
+
+.jheMenu .jheMenuItem:last-child {
+    border-bottom-style: none;
+}
+
+.jheToolbar .jheToolbarGroup {
+    border: 1px solid #DDD;
+    display: inline-block;
+}
+
+.jheAction:hover {
+    cursor: pointer;
+}
+
+.jheToolbar .jheAction {
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 16px;
+    height: 16px;
+    padding: 3px;
+    display: inline-block;
+}
+
+.jheToolbar .jhebold {
+    background-image: url(images/bold.png);
+}
+
+.jheToolbar .jhecopy {
+    background-image: url(images/copy.png);
+}
+
+.jheToolbar .jhecut {
+    background-image: url(images/cut.png);
+}
+
+.jheToolbar .jhefontName {
+    background-image: url(images/fontName.png);
+}
+
+.jheToolbar .jhefontSize {
+    background-image: url(images/fontSize.png);
+}
+
+.jheToolbar .jheforeColor {
+    background-image: url(images/foreColor.png);
+}
+
+.jheToolbar .jheheaders {
+    background-image: url(images/headers.png);
+}
+
+.jheToolbar .jheimage {
+    background-image: url(images/image.png);
+}
+
+.jheToolbar .jheindent {
+    background-image: url(images/indent.png);
+}
+
+.jheToolbar .jheinsertOrderedList {
+    background-image: url(images/insertOrderedList.png);
+}
+
+.jheToolbar .jheinsertUnorderedList {
+    background-image: url(images/insertUnorderedList.png);
+}
+
+.jheToolbar .jheitalic {
+    background-image: url(images/italic.png);
+}
+
+.jheToolbar .jhejustifyCenter {
+    background-image: url(images/justifyCenter.png);
+}
+
+.jheToolbar .jhejustifyFull {
+    background-image: url(images/justifyFull.png);
+}
+
+.jheToolbar .jhejustifyLeft {
+    background-image: url(images/justifyLeft.png);
+}
+
+.jheToolbar .jhejustifyRight {
+    background-image: url(images/justifyRight.png);
+}
+
+.jheToolbar .jhelink {
+    background-image: url(images/link.png);
+}
+
+.jheToolbar .jheoutdent {
+    background-image: url(images/outdent.png);
+}
+
+.jheToolbar .jhepaste {
+    background-image: url(images/paste.png);
+}
+
+.jheToolbar .jheredo {
+    background-image: url(images/redo.png);
+}
+
+.jheToolbar .jhetable {
+    background-image: url(images/table.png);
+}
+
+.jheToolbar .jheunderline {
+    background-image: url(images/underline.png);
+}
+
+.jheToolbar .jheundo {
+    background-image: url(images/undo.png);
+}
